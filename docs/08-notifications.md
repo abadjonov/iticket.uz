@@ -16,10 +16,10 @@
 
 ```mermaid
 flowchart LR
-    A["API endpoint\n(masalan demo_pay)"] -->|background_tasks.add_task| B["send_order_confirmation_email()\n(shu process ichida)"]
-    B --> C["Jinja2 shablon\nrender qilish"]
+    A["API endpoint<br/>(masalan demo_pay)"] -->|"background_tasks.add_task"| B["send_order_confirmation_email()<br/>(shu process ichida)"]
+    B --> C["Jinja2 shablon<br/>render qilish"]
     C --> D["SMTP orqali yuborish"]
-    B --> N["notifications jadvaliga\nstatus yozish"]
+    B --> N["notifications jadvaliga<br/>status yozish"]
 ```
 
 - Email yuborish **hech qachon** API javobini bloklamaydi — endpoint `background_tasks.add_task(send_order_confirmation_email, order_id)` chaqiradi va darhol javob qaytaradi, email esa fonda yuboriladi.

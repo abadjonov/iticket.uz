@@ -6,11 +6,11 @@
 
 ```mermaid
 flowchart LR
-    A["order\nstatus=pending\nexpires_at=+15min"] --> B["POST /payments/demo/pay\n{order_id}"]
-    B --> C["order topiladi,\nstatus=pending ekanligi tekshiriladi"]
-    C --> D["payments yozuvi yaratiladi\n(status=success)"]
-    D --> E["order.status=paid\nquantity_sold += n (atomic)"]
-    E --> F["BackgroundTasks:\nQR generatsiya + email"]
+    A["order<br/>status=pending<br/>expires_at=+15min"] --> B["POST /payments/demo/pay<br/>{order_id}"]
+    B --> C["order topiladi,<br/>status=pending ekanligi tekshiriladi"]
+    C --> D["payments yozuvi yaratiladi<br/>(status=success)"]
+    D --> E["order.status=paid<br/>quantity_sold += n (atomic)"]
+    E --> F["BackgroundTasks:<br/>QR generatsiya + email"]
     F --> G["200 OK {status: paid}"]
 ```
 

@@ -6,10 +6,10 @@
 
 ```mermaid
 flowchart LR
-    Client["Web Client\n(SPA / brauzer)"] -->|HTTPS| API["FastAPI (Uvicorn)"]
-    API --> DB[(PostgreSQL\nasyncpg)]
-    API -->|BackgroundTasks\n(shu process ichida)| BG["Email yuborish +\nQR generatsiya"]
-    BG --> Storage[("Local disk\n/media — poster, QR PNG")]
+    Client["Web Client<br/>(SPA / brauzer)"] -->|HTTPS| API["FastAPI (Uvicorn)"]
+    API --> DB[("PostgreSQL<br/>asyncpg")]
+    API -->|"BackgroundTasks<br/>(shu process ichida)"| BG["Email yuborish +<br/>QR generatsiya"]
+    BG --> Storage[("Local disk<br/>/media — poster, QR PNG")]
     BG --> Email["Email SMTP"]
 ```
 

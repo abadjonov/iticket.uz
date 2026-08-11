@@ -21,15 +21,15 @@
 
 ```mermaid
 flowchart TD
-    A["QR skanerlash\nPOST /checkin/scan"] --> B{"ticket qr_token\nbo'yicha topildimi?"}
-    B -->|yo'q| E1["404 invalid"]
-    B -->|ha| C{"ticket.event_id ==\nso'ralgan event_id?"}
-    C -->|yo'q| E2["409 wrong_event"]
-    C -->|ha| D{"ticket.status\n== valid?"}
-    D -->|used| E3["409 already_used"]
-    D -->|cancelled| E4["409 cancelled"]
-    D -->|valid| F["status=used, used_at=now(),\ncheckin_logs yozish"]
-    F --> S["200 success\n{holder_name, ticket_type}"]
+    A["QR skanerlash<br/>POST /checkin/scan"] --> B{"ticket qr_token<br/>bo'yicha topildimi?"}
+    B -->|"yo'q"| E1["404 invalid"]
+    B -->|"ha"| C{"ticket.event_id ==<br/>so'ralgan event_id?"}
+    C -->|"yo'q"| E2["409 wrong_event"]
+    C -->|"ha"| D{"ticket.status<br/>== valid?"}
+    D -->|"used"| E3["409 already_used"]
+    D -->|"cancelled"| E4["409 cancelled"]
+    D -->|"valid"| F["status=used, used_at=now(),<br/>checkin_logs yozish"]
+    F --> S["200 success<br/>{holder_name, ticket_type}"]
 ```
 
 Har bir natija (muvaffaqiyatli yoki xato) `checkin_logs` jadvaliga yoziladi — audit va statistika uchun.
