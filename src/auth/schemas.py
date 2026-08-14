@@ -15,3 +15,17 @@ class UserRegisterRequest(BaseModel):
         if self.password != self.confirm_password:
             raise ValueError("Passwords do not match")
         return self
+
+
+class UserLoginRequest(BaseModel):
+    """Foydalanuvchi tizimga kirish uchun so'rov modeli."""
+
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=128)
+
+
+class UserLoginResponse(BaseModel):
+    """Foydalanuvchi tizimga kirish uchun javob modeli."""
+
+    access_token: str
+    token_type: str = "bearer"

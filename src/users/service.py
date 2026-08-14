@@ -1,10 +1,11 @@
+from uuid import UUID
+
 from fastapi import HTTPException, status
 
 from src.users.models import User
-from src.users.schemas import UserBase
 from src.users.repository import UserRepository
 from src.auth.schemas import UserRegisterRequest
-from src.core.security import hash_password, verify_password
+from src.core.security import create_access_token, hash_password, verify_password
 
 
 class UserService:
@@ -34,3 +35,9 @@ class UserService:
 
     async def delete_user(self, user: User) -> None:
         await self.user_repository.delete_user(user)
+
+    def verify_password(self, plain_password: str, hashed_password: str) -> bool:
+        return verify_password(plain_password, hashed_password)
+
+    def create_access_token(self, user_id: UUID) -> str:
+        return create_access_token(str(user_id))
