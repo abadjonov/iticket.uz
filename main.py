@@ -5,7 +5,7 @@ from src.core.config import settings
 
 
 def main():
-    uvicorn.run(app, host=settings.HOST, port=settings.PORT, reload=settings.ENVIRONMENT == "development")
+    uvicorn.run(app, host=settings.HOST, port=settings.PORT)
 
 
 if __name__ == "__main__":

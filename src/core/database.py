@@ -43,6 +43,27 @@ class UUIDMixin:
     )
 
 
+class TimestampMixin:
+    """`created_at` va `updated_at` timestamp pattern — deyarli barcha jadvallar shu mixin'dan foydalanadi.
+
+    Qarang: [[03-database-schema.md]]
+    """
+
+    created_at: Mapped[str] = mapped_column(
+        "created_at",
+        default="now()",
+        server_default="now()",
+        nullable=False,
+    )
+    updated_at: Mapped[str] = mapped_column(
+        "updated_at",
+        default="now()",
+        server_default="now()",
+        onupdate="now()",
+        nullable=False,
+    )
+
+
 async def get_db() -> AsyncGenerator[AsyncSession]:
     """FastAPI dependency — har bir so'rov uchun alohida DB session beradi."""
     async with AsyncSessionLocal() as session:

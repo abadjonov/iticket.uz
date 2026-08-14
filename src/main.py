@@ -17,4 +17,4 @@ app = FastAPI(title=settings.PROJECT_NAME)
 
 @app.get("/", tags=["root"])
 async def root() -> dict[str, str]:
-    return {"message": "iticket.uz API ishga tushdi"}
+    return {"message": f"{settings.PROJECT_NAME} ishga tushdi"}
