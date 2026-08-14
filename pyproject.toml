@@ -5,8 +5,32 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "alembic>=1.19.1",
     "asyncpg>=0.31.0",
     "fastapi[standard]>=0.141.1",
+    "pydantic-settings>=2.15.0",
     "sqlalchemy[asyncio]>=2.0.51",
     "uvicorn[standard]>=0.52.1",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.2",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
