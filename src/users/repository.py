@@ -35,5 +35,6 @@ class UserRepository:
         return user
 
     async def delete_user(self, user: User) -> None:
+        # FIXME: delete qilinganda inactive qilinishi kerak, shunchaki o'chirib yuborish emas
         await self.session.delete(user)
         await self.session.commit()
