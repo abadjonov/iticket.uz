@@ -18,3 +18,9 @@ class VenueResponse(BaseModel):
     capacity: int = Field(gt=0)  # gt: >, ge: >=, lt: <, le: <=
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class VenueResponseList(BaseModel):
+    venues: list[VenueResponse]
+
+    model_config = ConfigDict(from_attributes=True)

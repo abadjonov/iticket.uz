@@ -19,3 +19,8 @@ class VenueRepository:
         await self.db.commit()
         await self.db.refresh(venue)
         return venue
+
+    async def get_venues(self) -> list[Venue]:
+        stmt = select(Venue)
+        result = await self.db.execute(stmt)
+        return result.scalars()  # type: ignore

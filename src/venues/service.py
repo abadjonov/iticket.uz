@@ -21,3 +21,7 @@ class VenueService:
         )
 
         return new_venue
+
+    async def get_all_venus(self) -> list[Venue]:
+        result = await self.repository.get_venues()
+        return result
