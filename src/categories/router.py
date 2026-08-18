@@ -7,7 +7,7 @@ from src.users.models import User
 from src.auth.dependencies import get_current_active_user, get_current_active_superuser
 
 from src.categories.models import Category
-from src.categories.schemas import CategoryCreate, CategiryResponse, CategoryResponseList
+from src.categories.schemas import CategoryCreate, CategoryResponse, CategoryResponseList
 from src.categories.repository import CategoryRepository
 from src.categories.service import CategoryService
 
