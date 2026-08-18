@@ -11,7 +11,9 @@ from src.core.security import decode_access_token
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
-async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)) -> User:
+async def get_current_user(
+    token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)
+) -> User:
     """Hozirgi foydalanuvchini olish."""
     try:
         payload = decode_access_token(token)
@@ -50,7 +52,9 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
     return current_user
 
 
-async def get_current_active_superuser(current_user: User = Depends(get_current_active_user)) -> User:
+async def get_current_active_superuser(
+    current_user: User = Depends(get_current_active_user),
+) -> User:
     """Hozirgi faol superfoydalanuvchini olish."""
     if not current_user.is_superuser:
         raise HTTPException(
@@ -60,7 +64,9 @@ async def get_current_active_superuser(current_user: User = Depends(get_current_
     return current_user
 
 
-async def get_current_orginization_user(current_user: User = Depends(get_current_active_user)) -> User:
+async def get_current_orginization_user(
+    current_user: User = Depends(get_current_active_user),
+) -> User:
     """Hozirgi faol tashkilot foydalanuvchini olish."""
     if not current_user.organizer:
         raise HTTPException(
