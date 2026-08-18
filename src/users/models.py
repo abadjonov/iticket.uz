@@ -16,6 +16,6 @@ class User(Base, UUIDMixin, TimestampMixin):
     is_active: Mapped[bool] = mapped_column(default=True, nullable=False)
     is_superuser: Mapped[bool] = mapped_column(default=False, nullable=False)
 
-    organizer: Mapped['Organizer'] = relationship(
-        back_populates='user', foreign_keys='Organizer.user_id'
+    organizer: Mapped["Organizer"] = relationship(
+        back_populates="user", foreign_keys="Organizer.user_id"
     )

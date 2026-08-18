@@ -11,10 +11,12 @@ class Organizer(Base, UUIDMixin, TimestampMixin):
 
     company_name: Mapped[str] = mapped_column("company_name", nullable=False)
     description: Mapped[str | None] = mapped_column("description", nullable=True)
-    status: Mapped[OrganizerStatus] = mapped_column("status", nullable=False, default=OrganizerStatus.PENDING)
+    status: Mapped[OrganizerStatus] = mapped_column(
+        "status", nullable=False, default=OrganizerStatus.PENDING
+    )
 
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), nullable=False, unique=True)
     approved_by: Mapped[str] = mapped_column(ForeignKey("users.id"), nullable=True)
 
-    user: Mapped['User'] = relationship(foreign_keys=[user_id], back_populates='organizer')
-    approver: Mapped['User | None'] = relationship(foreign_keys=[approved_by])
+    user: Mapped["User"] = relationship(foreign_keys=[user_id], back_populates="organizer")
+    approver: Mapped["User | None"] = relationship(foreign_keys=[approved_by])
