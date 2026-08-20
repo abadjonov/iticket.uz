@@ -12,6 +12,7 @@ from src.users import models as user_models  # noqa: F401
 from src.organizers import models as organizer_models  # noqa: F401
 from src.venues import models as venue_models  # noqa: F401
 from src.categories import models as category_models  # noqa: F401
+from src.events import models as event_models  # noqa: F401
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
