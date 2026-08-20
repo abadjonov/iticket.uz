@@ -1,9 +1,15 @@
+from typing import List, TYPE_CHECKING
+
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey
 
 from src.core.database import Base, UUIDMixin, TimestampMixin
 from src.organizers.constants import OrganizerStatus
 from src.users.models import User
+
+
+if TYPE_CHECKING:
+    from src.events.models import Event
 
 
 class Organizer(Base, UUIDMixin, TimestampMixin):
@@ -20,3 +26,4 @@ class Organizer(Base, UUIDMixin, TimestampMixin):
 
     user: Mapped["User"] = relationship(foreign_keys=[user_id], back_populates="organizer")
     approver: Mapped["User | None"] = relationship(foreign_keys=[approved_by])
+    events: Mapped[List["Event"]] = relationship(back_populates="organizer")
