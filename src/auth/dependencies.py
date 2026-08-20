@@ -78,8 +78,7 @@ async def get_current_orginization_user(
 
 
 async def get_current_orginizer(
-    current_user: User = Depends(get_current_active_user),
-    db: AsyncSession = Depends(get_db)
+    current_user: User = Depends(get_current_active_user), db: AsyncSession = Depends(get_db)
 ) -> Organizer:
     user_repository = UserRepository(db)
     user_service = UserService(user_repository)

@@ -14,6 +14,8 @@ class EventRepository:
         await self.db.refresh(event)
         return event
 
-    async def get_events(self, ) -> list[Event]:
+    async def get_events(
+        self,
+    ) -> list[Event]:
         events = await self.db.execute(select(Event))
-        return events.scalars() # type: ignore
+        return events.scalars()  # type: ignore

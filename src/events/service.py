@@ -24,4 +24,4 @@ class EventService:
         )
 
     async def get_events(self) -> list[Event]:
-        return await self.repository.get_events() # type: ignore
+        return await self.repository.get_events()  # type: ignore

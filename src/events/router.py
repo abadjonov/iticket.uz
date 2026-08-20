@@ -33,4 +33,4 @@ async def get_events(
     repository = EventRepository(db)
     service = EventService(repository)
     events = await service.get_events()
-    return EventListResponse(events=events) # type: ignore
+    return EventListResponse(events=events)  # type: ignore
