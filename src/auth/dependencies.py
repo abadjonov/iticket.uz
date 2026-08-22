@@ -6,7 +6,7 @@ from src.core.database import get_db, AsyncSession
 from src.users.models import User
 from src.users.service import UserService
 from src.users.repository import UserRepository
-from src.core.security import decode_access_token
+from src.core.security import verify_access_token
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
@@ -16,19 +16,7 @@ async def get_current_user(
     token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)
 ) -> User:
     """Hozirgi foydalanuvchini olish."""
-    try:
-        payload = decode_access_token(token)
-        user_id = payload.get("user_id")
-        if user_id is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Token noto'g'ri yoki muddati o'tgan",
-            )
-    except Exception:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token noto'g'ri yoki muddati o'tgan",
-        )
+    user_id = verify_access_token(token)
 
     user_repository = UserRepository(db)
     user_service = UserService(user_repository)
