@@ -31,6 +31,8 @@ class Event(Base, UUIDMixin, TimestampMixin):
     status: Mapped[EventStatus] = mapped_column("status", nullable=False, default=EventStatus.DRAFT)
     banner_url: Mapped[str] = mapped_column("banner_url", nullable=True)
 
-    organizer: Mapped[Organizer] = relationship(foreign_keys=[organizer_id], back_populates="events")
+    organizer: Mapped[Organizer] = relationship(
+        foreign_keys=[organizer_id], back_populates="events"
+    )
     venue: Mapped[Venue] = relationship(foreign_keys=[venue_id], back_populates="events")
     category: Mapped[Category] = relationship(foreign_keys=[category_id], back_populates="events")

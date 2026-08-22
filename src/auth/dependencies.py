@@ -1,6 +1,7 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
+from src.organizers.models import Organizer
 from src.core.database import get_db, AsyncSession
 from src.users.models import User
 from src.users.service import UserService
@@ -74,3 +75,18 @@ async def get_current_orginization_user(
             detail="Foydalanuvchi organizer emas",
         )
     return current_user
+
+
+async def get_current_orginizer(
+    current_user: User = Depends(get_current_active_user), db: AsyncSession = Depends(get_db)
+) -> Organizer:
+    user_repository = UserRepository(db)
+    user_service = UserService(user_repository)
+    organizer = await user_service.get_organizer_by_user_id(current_user.id)
+
+    if not organizer:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Foydalanuvchi organizer emas",
+        )
+    return organizer
