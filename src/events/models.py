@@ -1,3 +1,4 @@
+from typing import TYPE_CHECKING
 from datetime import datetime
 from enum import Enum
 
@@ -8,6 +9,9 @@ from src.core.database import Base, UUIDMixin, TimestampMixin
 from src.organizers.models import Organizer
 from src.venues.models import Venue
 from src.categories.models import Category
+
+if TYPE_CHECKING:
+    from src.ticket_types.models import TicketType
 
 
 class EventStatus(str, Enum):
@@ -36,3 +40,4 @@ class Event(Base, UUIDMixin, TimestampMixin):
     )
     venue: Mapped[Venue] = relationship(foreign_keys=[venue_id], back_populates="events")
     category: Mapped[Category] = relationship(foreign_keys=[category_id], back_populates="events")
+    ticket_types: Mapped[list["TicketType"]] = relationship(back_populates="event")

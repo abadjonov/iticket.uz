@@ -13,6 +13,7 @@ from src.organizers.models import Organizer  # noqa: F401
 from src.venues.models import Venue  # noqa: F401
 from src.categories.models import Category  # noqa: F401
 from src.events.models import Event  # noqa: F401
+from src.ticket_types.models import TicketType # noqa: F401
 
 # Domain modellari shu yerda import qilinadi — shundagina Alembic ularni
 # `Base.metadata`ga ro'yxatdan o'tgan deb ko'radi va autogenerate ishlaydi
