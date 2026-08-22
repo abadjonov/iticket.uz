@@ -12,9 +12,12 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    PROJECT_NAME: str = "iticket.uz API"
     ENVIRONMENT: str = "development"
     API_V1_PREFIX: str = "/api/v1"
+
+    PROJECT_NAME: str = "iticket.uz API"
+    ACCESS_TOKEN_TIMELIMIT: int = 10
+    ACCESS_TOKEN_SECRET_KEY: str = "change-me"
 
     HOST: str = "localhost"
     PORT: int = 8000
